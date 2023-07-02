@@ -59,9 +59,9 @@ public class TutorialDetailController {
 
     //delete detail by tutorial_id
     @DeleteMapping("/tutorials/{id}/details")
-    public ResponseEntity<HttpStatus> deleteByTutorialId(@PathVariable Long id){
+    public ResponseEntity<HttpStatus> deleteByTutorialId(@PathVariable Long id) throws Exception {
         if (!tutorialRepository.existsById(id)){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           throw new Exception("id not found");
         }
         tutorialDetailRepository.deleteByTutorialId(id);
         return new ResponseEntity<>(HttpStatus.OK);
